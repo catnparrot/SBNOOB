@@ -1,6 +1,7 @@
 package com.packt.cardatabase.domain;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -11,8 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Owner {
 
 	@Id
@@ -20,18 +26,19 @@ public class Owner {
 	private long ownerid;
 	
 	private String firstname, lastname;
-	/*
+	
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
 	private List<Car> cars;
-	*/
 	
+	/*
 	@ManyToMany(cascade=CascadeType.PERSIST)
 	@JoinTable(name="car_owner",
 			joinColumns = { @JoinColumn(name="ownerid")},
 			inverseJoinColumns = { @JoinColumn(name="`id`") })
 	private Set<Car> cars = new HashSet<Car>();
+	*/
 	
-	/*
 	public List<Car> getCars() {
 		return cars;
 	}
@@ -39,10 +46,10 @@ public class Owner {
 	public void setCars(List<Car> cars) {
 		this.cars = cars;
 	}
-	*/
+	
 
 	public Owner() {}
-
+	/*
 	public Set<Car> getCars() {
 		return cars;
 	}
@@ -50,7 +57,7 @@ public class Owner {
 	public void setCars(Set<Car> cars) {
 		this.cars = cars;
 	}
-
+	*/
 	public Owner(String firstname, String lastname) {
 		super();
 		this.firstname = firstname;

@@ -30,7 +30,7 @@ public class Car {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="owner")
 	private Owner owner;
-	
+	/*
 	@ManyToMany(mappedBy = "cars")
 	private Set<Owner> owners = new HashSet<Owner>();
 	
@@ -41,7 +41,7 @@ public class Car {
 	public void setOwners(Set<Owner> owners) {
 		this.owners = owners;
 	}
-
+	*/
 	public Car() {}
 
 	public Car(String brand, String model, String color, String registerNumber, int year, int price, Owner owner) {

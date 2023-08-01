@@ -3,10 +3,18 @@ import { Body, Body0, Body1 } from "./component/Body1";
 import Body2 from "./component/Body2";
 import Body3 from "./component/Body3";
 import { Body4, Body5 } from "./component/Body4";
+import Viewer from "./component/Viewer";
+import Controller from "./component/Controller";
 import Footer from "./component/Footer";
 import Header from "./component/Header";
+import { useState } from "react";
 
 function App() {
+  const [count, setCount] = useState(0);
+  const handleSetCount = (value) => {
+    setCount(count + value);
+  };
+
   const BodyProps1 = {
     name: "이정환",
     location: "부천시",
@@ -32,6 +40,12 @@ function App() {
       <Body3 />
       <Body4 />
       <Body5 />
+      <section>
+        <Viewer a={count} />
+      </section>
+      <section>
+        <Controller func={handleSetCount} />
+      </section>
       <Footer />
     </div>
   );

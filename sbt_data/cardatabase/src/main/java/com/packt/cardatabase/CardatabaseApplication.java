@@ -13,6 +13,8 @@ import com.packt.cardatabase.domain.Car;
 import com.packt.cardatabase.domain.CarRepository;
 import com.packt.cardatabase.domain.Owner;
 import com.packt.cardatabase.domain.OwnerRepository;
+import com.packt.cardatabase.domain.User;
+import com.packt.cardatabase.domain.UserRepository;
 
 /*
  * @EnableAutoConfiguration
@@ -33,6 +35,9 @@ public class CardatabaseApplication implements CommandLineRunner {
 	@Autowired
 	private OwnerRepository orepository;
 	
+	@Autowired
+	private UserRepository urepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(CardatabaseApplication.class, args);
 	}
@@ -44,6 +49,8 @@ public class CardatabaseApplication implements CommandLineRunner {
 		Owner owner2 = new Owner("Mary", "Robinson");
 		orepository.saveAll(Arrays.asList(owner1, owner2));
 		
+//		orepository.save(owner1);
+//		orepository.save(owner2);
 		
 		repository.save(new Car("Ford", "Mustang", "Red", "ADF-1121", 2021, 59000, owner1));
 		repository.save(new Car("Nissan", "Leaf", "White", "SSJ-3002", 2019, 29000, owner2));
@@ -52,6 +59,9 @@ public class CardatabaseApplication implements CommandLineRunner {
 		for(Car car : repository.findAll()) {
 			logger.info(car.getBrand() + " " + car.getModel());
 		}
+		
+		urepository.save(new User("user", "$2a$10$tDWthVyM4LfWSdxAzYdgy.8Lra93HIcpV4n86PoOcSoO24tD4MCSC", "USER"));
+		urepository.save(new User("admin", "$2a$10$aKAeKXSALnYjMl3xWITf6.D3TjKcym0LsUiXUKS/M61xTOm5RI7/e", "ADMIN"));
 	}
 
 }
